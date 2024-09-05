@@ -1,11 +1,16 @@
 "use client";
 
+import { required } from "@/formValidation";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { Form, Field } from "react-final-form";
 
 export default function Register() {
+  const { push } = useRouter();
   const onSubmit = (values: { username: string; password: string }) => {
-    axios.post("api/users", values);
+    axios.post("api/users", values).then(() => {
+      push("/");
+    });
   };
 
   return (
@@ -14,7 +19,7 @@ export default function Register() {
       <Form
         onSubmit={onSubmit}
         initialValues={{}}
-        render={({ handleSubmit, submitting, pristine }) => (
+        render={({ handleSubmit, submitting, pristine, submitError }) => (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col ...">
               <div className="mb-3">
@@ -24,6 +29,7 @@ export default function Register() {
                   type="text"
                   placeholder="username"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
               <div className="mb-3">
@@ -33,8 +39,10 @@ export default function Register() {
                   type="password"
                   placeholder="password"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
+              {submitError}
               <div className="mb-3">
                 <button
                   type="submit"

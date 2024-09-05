@@ -1,5 +1,6 @@
 "use client";
 
+import { required } from "@/formValidation";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Form, Field } from "react-final-form";
@@ -29,6 +30,7 @@ export default function Login() {
                   type="text"
                   placeholder="username"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
               <div className="mb-3">
@@ -38,6 +40,7 @@ export default function Login() {
                   type="password"
                   placeholder="password"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
               <div className="mb-3">

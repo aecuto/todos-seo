@@ -1,6 +1,6 @@
 "use client";
 
-import { ITodo } from "@/app/services.type";
+import { ITodo } from "@/services.type";
 import {
   createTodo,
   deleteTodoById,
@@ -9,6 +9,7 @@ import {
 } from "@/services";
 import { useEffect, useState } from "react";
 import { Form, Field } from "react-final-form";
+import { required } from "@/formValidation";
 
 export default function TodoForm({ params }: { params: { id: string } }) {
   const isCreate = params.id === "create";
@@ -46,6 +47,7 @@ export default function TodoForm({ params }: { params: { id: string } }) {
                   type="text"
                   placeholder="title"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
               <div className="mb-3">
@@ -55,6 +57,7 @@ export default function TodoForm({ params }: { params: { id: string } }) {
                   type="text"
                   placeholder="description"
                   className="text-black p-1"
+                  validate={required}
                 />
               </div>
               <div className="mb-3">

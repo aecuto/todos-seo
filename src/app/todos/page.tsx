@@ -1,5 +1,5 @@
 import Navbar from "@/app/components/Navbar";
-import { ITodo } from "@/app/services.type";
+import { ITodo } from "@/services.type";
 import { getTodos } from "@/services";
 import Link from "next/link";
 
